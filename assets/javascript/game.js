@@ -68,10 +68,15 @@ function guessLetter(letter) {
             if (word[i].toLowerCase() === letter.toLowerCase()) {
                 chosenWordArray[i] = word[i];
             }    
+            //if check fails, subtract a chance 
+            else {
+                guessesLeft --;
+            }
         }
 
         //writing new word to the DOM with the letters filled in
-        letterSpaces.textContent = choseWordArray.join(" ");
+        letterSpaces.textContent = chosenWordArray.join(" ");
+        guessedLetters.textContent = guessedArray.join(" ");
         
     }
     //if game isn't started or a letter is pressed more than once, alerting the player of what to
@@ -84,6 +89,8 @@ function guessLetter(letter) {
         }
     }
 }
+
+
 
 
  
