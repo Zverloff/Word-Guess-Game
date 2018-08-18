@@ -8,7 +8,6 @@ var failure = document.getElementById("losses");
 
 //creating word bank
 var wordChoice = ["sword", "spear", "shield", "pillage", "longship", "dragon", "serpent"];
-
 //defining variables
 var win = 0;
 var loss = 0;
@@ -56,6 +55,19 @@ letterSpaces.textContent = chosenWordArray.join(" ");
 guessedArray.textContent = guessedDiv;
 }
 
+//Check if game is lost
+function checkStatus() {
+    if (guessesRemaining === 0) {
+        gameStart = false;
+        loss++;
+        failure.textContent = loss;
+    } else if (word.toLowerCase() === chosenWordArray.join("").toLowerCase()) {
+        gameStart = false;
+        win++;
+        victory.textContent = win;
+    }
+}
+
 //function to define logic of checking if the letter is in the word
 function guessLetter(letter) { 
     //checking to see if buttn has been clicked to start and that a letter has only been pressed once
@@ -63,23 +75,25 @@ function guessLetter(letter) {
         //pushing used letter to an array
         guessedArray.push(letter);
 
-        //turning letters to lower case and checking the word against the word in the array
-        for (var i = 0; i < word.length; i++) {
-            if (word[i].toLowerCase() === letter.toLowerCase()) {
-                chosenWordArray[i] = word[i];
-            }    
-            //if check fails, subtract a chance 
-            else {
-                guessesLeft--;
-                guessesRemaining.textContent = guessesLeft;
-            }
+        var wIndex = word.indexOf(letter.toLowerCase())
+
+        if (wIndex !== -1) {
+            word.split('').forEach(function (wordLetter, i) {
+                if (wordLetter === letter.toLowerCase()) {
+                    chosenWordArray[i] = letter.toLowerCase()
+                }
+            })
+        }    
+        //if check fails, subtract a chance 
+        else {
+            guessesLeft--;
+            guessesRemaining.textContent = guessesLeft;
         }
 
         //writing new word to the DOM with the letters filled in
         letterSpaces.textContent = chosenWordArray.join(" ");
         guessedLetters.textContent = guessedArray.join(" ");
-        gameOver();
-        youWin();
+        checkStatus();
     }
     //if game isn't started or a letter is pressed more than once, alerting the player of what to
     else { 
@@ -92,23 +106,7 @@ function guessLetter(letter) {
     }
 }
 
-//Check if game is lost
-function gameOver() {
-    if (guessesRemaining === 0) {
-        gameStart = false;
-        loss++;
-        failure.textContent = loss;
-    }
-}
 
-//check if game is won
-function youWin () {
-    if (word.toLowerCase() === chosenWordArray.join( " ").toLowerCase()) {
-        gameStart = false;
-        win++;
-        victory.textContent = win;
-    }
-}
 
 
  
