@@ -70,7 +70,7 @@ function guessLetter(letter) {
             }    
             //if check fails, subtract a chance 
             else {
-                guessesLeft --;
+                guessesLeft--;
                 guessesRemaining.textContent = guessesLeft;
             }
         }
@@ -78,7 +78,8 @@ function guessLetter(letter) {
         //writing new word to the DOM with the letters filled in
         letterSpaces.textContent = chosenWordArray.join(" ");
         guessedLetters.textContent = guessedArray.join(" ");
-        
+        gameOver();
+        youWin();
     }
     //if game isn't started or a letter is pressed more than once, alerting the player of what to
     else { 
@@ -100,6 +101,7 @@ function gameOver() {
     }
 }
 
+//check if game is won
 function youWin () {
     if (word.toLowerCase() === chosenWordArray.join( " ").toLowerCase()) {
         gameStart = false;

@@ -1,0 +1,36 @@
+.mainTitle {
+    background-color: black;
+    color: red;
+    text-align: center;
+    padding: 20px;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+.winBox, .chanceBox, .lossBox, .guessedBox {
+    padding: 10px;    
+    background-color: tan;
+    margin-top: 5px;
+
+}
+
+.wordBox {
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+    background-color: tan;
+    padding: 10px;
+}
+
+.startButton {
+    margin-left: 37%;
+    margin-right: 37%;
+    width: 26%;
+    margin-top: 5px;
+}
+
+.pressKey {
+    text-align: center;
+}
