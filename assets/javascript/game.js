@@ -71,6 +71,7 @@ function guessLetter(letter) {
             //if check fails, subtract a chance 
             else {
                 guessesLeft --;
+                guessesRemaining.textContent = guessesLeft;
             }
         }
 
@@ -90,7 +91,22 @@ function guessLetter(letter) {
     }
 }
 
+//Check if game is lost
+function gameOver() {
+    if (guessesRemaining === 0) {
+        gameStart = false;
+        loss++;
+        failure.textContent = loss;
+    }
+}
 
+function youWin () {
+    if (word.toLowerCase() === chosenWordArray.join( " ").toLowerCase()) {
+        gameStart = false;
+        win++;
+        victory.textContent = win;
+    }
+}
 
 
  
