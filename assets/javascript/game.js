@@ -57,19 +57,24 @@ guessedArray.textContent = guessedDiv;
 
 //Check if game is lost
 function checkStatus() {
-    if (guessesRemaining === 0) {
+    if (guessesLeft === 0) {
         gameStart = false;
         loss++;
         failure.textContent = loss;
+        guessedLetters.textContent = "Sorry, the mighty sea got you this time. Try again"
+
+
     } else if (word.toLowerCase() === chosenWordArray.join("").toLowerCase()) {
         gameStart = false;
         win++;
         victory.textContent = win;
+        guessedLetters.textContent = "You are victorious! Your place in Valhalla is all but insured."
     }
 }
 
 //function to define logic of checking if the letter is in the word
 function guessLetter(letter) { 
+    console.log(score)
     //checking to see if buttn has been clicked to start and that a letter has only been pressed once
     if (gameStart === true && guessedArray.indexOf(letter) === -1) {
         //pushing used letter to an array
